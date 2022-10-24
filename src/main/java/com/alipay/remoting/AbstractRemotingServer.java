@@ -16,19 +16,14 @@
  */
 package com.alipay.remoting;
 
-import java.net.InetSocketAddress;
-
-import com.alipay.remoting.config.BoltOption;
-import com.alipay.remoting.config.BoltOptions;
-import com.alipay.remoting.config.BoltServerOption;
-import com.alipay.remoting.config.Configuration;
-import com.alipay.remoting.config.ConfigurableInstance;
+import com.alipay.remoting.config.*;
 import com.alipay.remoting.config.configs.ConfigContainer;
 import com.alipay.remoting.config.configs.DefaultConfigContainer;
 import com.alipay.remoting.config.switches.GlobalSwitch;
+import com.alipay.remoting.log.BoltLoggerFactory;
 import org.slf4j.Logger;
 
-import com.alipay.remoting.log.BoltLoggerFactory;
+import java.net.InetSocketAddress;
 
 /**
  * Server template for remoting.
@@ -41,11 +36,22 @@ public abstract class AbstractRemotingServer extends AbstractLifeCycle implement
 
     private static final Logger   logger = BoltLoggerFactory.getLogger("CommonDefault");
 
-    private String                ip;
+
+    private final String                ip;
     private int                   port;
 
+    /**
+     * RPC相关配置项
+     */
     private final BoltOptions     options;
+    /**
+     * 全局开关
+     */
     private final GlobalSwitch    globalSwitch;
+
+    /**
+     * 和示例强相关的配置容器
+     */
     private final ConfigContainer configContainer;
 
     public AbstractRemotingServer(int port) {
@@ -88,7 +94,7 @@ public abstract class AbstractRemotingServer extends AbstractLifeCycle implement
     @Override
     public void startup() throws LifeCycleException {
         super.startup();
-
+        //TODO:服务端启动入口
         try {
             doInit();
 

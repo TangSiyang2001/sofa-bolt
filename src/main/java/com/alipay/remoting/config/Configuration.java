@@ -18,6 +18,7 @@ package com.alipay.remoting.config;
 
 /**
  * Config interface.
+ * TODO:关于配置模型的设计，可以改名叫Configurable
  *
  * @author chengyi (mark.lx@antfin.com) 2018-11-06 14:46
  */
@@ -25,6 +26,7 @@ public interface Configuration {
 
     /**
      * Get the option value.
+     * 直接获取配置项对应的值
      *
      * @param option target option
      * @return BoltOption
@@ -32,6 +34,7 @@ public interface Configuration {
     <T> T option(BoltOption<T> option);
 
     /**
+     * 返回添加选项和值后的配置对象
      * Allow to specify a {@link BoltOption} which is used for the {@link Configuration} instances once they got
      * created. Use a value of {@code null} to remove a previous set {@link BoltOption}.
      *

@@ -16,15 +16,15 @@
  */
 package com.alipay.remoting.rpc;
 
-import java.lang.ref.SoftReference;
-import java.util.Properties;
-
 import com.alipay.remoting.RemotingAddressParser;
 import com.alipay.remoting.Url;
 import com.alipay.remoting.config.Configs;
 import com.alipay.remoting.rpc.protocol.RpcProtocol;
 import com.alipay.remoting.rpc.protocol.RpcProtocolV2;
 import com.alipay.remoting.util.StringUtils;
+
+import java.lang.ref.SoftReference;
+import java.util.Properties;
 
 /**
  * This is address parser for RPC.

@@ -83,7 +83,7 @@ public abstract class AbstractConnectionFactory implements ConnectionFactory {
                                                         new NamedThreadFactory(
                                                             "bolt-netty-client-worker", true));
 
-    private final Configuration         configuration;
+    private final Configuration configuration;
     private final Codec                 codec;
     private final ChannelHandler        heartbeatHandler;
     private final ChannelHandler        handler;

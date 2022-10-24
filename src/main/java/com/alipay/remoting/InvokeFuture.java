@@ -16,18 +16,20 @@
  */
 package com.alipay.remoting;
 
-import java.net.InetSocketAddress;
-
 import io.netty.util.Timeout;
+
+import java.net.InetSocketAddress;
 
 /**
  * The future of an invocation.
+ * TODO:关于响应等待的封装
  * 
  * @author jiangping
  * @version $Id: InvokeFuture.java, v 0.1 2015-9-21 PM5:30:35 tao Exp $
  */
 public interface InvokeFuture {
     /**
+     * 有限时地等待响应
      * Wait response with timeout.
      *
      * @param timeoutMillis time out in millisecond
@@ -37,6 +39,7 @@ public interface InvokeFuture {
     RemotingCommand waitResponse(final long timeoutMillis) throws InterruptedException;
 
     /**
+     * 一直等等到响应
      * Wait response with unlimit timeout
      *
      * @return remoting command
@@ -45,6 +48,7 @@ public interface InvokeFuture {
     RemotingCommand waitResponse() throws InterruptedException;
 
     /**
+     * 创建连接关闭响应
      * Create a remoting command response when connection closed
      *
      * @param responseHost target host

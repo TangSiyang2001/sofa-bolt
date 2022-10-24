@@ -16,13 +16,14 @@
  */
 package com.alipay.remoting;
 
+import com.alipay.remoting.exception.RemotingException;
+
 import java.util.List;
 import java.util.Map;
 
-import com.alipay.remoting.exception.RemotingException;
-
 /**
  * Connection manager of connection pool
+ * TODO：连接池的连接管理器
  * 
  * @author xiaomin.cxm
  * @version $Id: ConnectionManager.java, v 0.1 Mar 7, 2016 2:42:46 PM xiaomin.cxm Exp $

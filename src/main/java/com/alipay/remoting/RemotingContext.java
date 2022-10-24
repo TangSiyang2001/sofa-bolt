@@ -16,15 +16,14 @@
  */
 package com.alipay.remoting;
 
-import java.util.concurrent.ConcurrentHashMap;
-
 import com.alipay.remoting.rpc.RpcCommandType;
 import com.alipay.remoting.rpc.protocol.UserProcessor;
 import com.alipay.remoting.util.ConnectionUtil;
 import com.alipay.remoting.util.StringUtils;
-
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelHandlerContext;
+
+import java.util.concurrent.ConcurrentMap;
 
 /**
  * Wrap the ChannelHandlerContext.
@@ -50,7 +49,7 @@ public class RemotingContext {
     /** rpc command type */
     private int                                         rpcCommandType;
 
-    private ConcurrentHashMap<String, UserProcessor<?>> userProcessors;
+    private ConcurrentMap<String, UserProcessor<?>> userProcessors;
 
     private InvokeContext                               invokeContext;
 
@@ -80,7 +79,7 @@ public class RemotingContext {
      * @param userProcessors
      */
     public RemotingContext(ChannelHandlerContext ctx, boolean serverSide,
-                           ConcurrentHashMap<String, UserProcessor<?>> userProcessors) {
+                           ConcurrentMap<String, UserProcessor<?>> userProcessors) {
         this.channelContext = ctx;
         this.serverSide = serverSide;
         this.userProcessors = userProcessors;
@@ -95,7 +94,7 @@ public class RemotingContext {
      */
     public RemotingContext(ChannelHandlerContext ctx, InvokeContext invokeContext,
                            boolean serverSide,
-                           ConcurrentHashMap<String, UserProcessor<?>> userProcessors) {
+                           ConcurrentMap<String, UserProcessor<?>> userProcessors) {
         this.channelContext = ctx;
         this.serverSide = serverSide;
         this.userProcessors = userProcessors;

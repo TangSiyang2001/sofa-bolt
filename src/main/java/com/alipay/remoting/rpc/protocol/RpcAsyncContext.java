@@ -16,13 +16,14 @@
  */
 package com.alipay.remoting.rpc.protocol;
 
-import java.util.concurrent.atomic.AtomicBoolean;
-
 import com.alipay.remoting.AsyncContext;
 import com.alipay.remoting.RemotingContext;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+
 /**
  * Async biz context of Rpc.
+ * TODO:异步业务逻辑执行上下文
  * 
  * @author xiaomin.cxm
  * @version $Id: RpcAsyncContext.java, v 0.1 May 16, 2016 8:23:07 PM xiaomin.cxm Exp $
@@ -58,6 +59,7 @@ public class RpcAsyncContext implements AsyncContext {
      */
     @Override
     public void sendResponse(Object responseObject) {
+        //保证精确一次RPC调用，每次请求处理只会对应一个AsyncContext
         if (isResponseSentAlready.compareAndSet(false, true)) {
             processor.sendResponseIfNecessary(this.ctx, cmd.getType(), processor
                 .getCommandFactory().createResponse(responseObject, this.cmd));

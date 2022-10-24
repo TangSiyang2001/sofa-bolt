@@ -20,6 +20,7 @@ import java.net.InetSocketAddress;
 
 /**
  * Command factory
+ * TODO:命令工厂，创建请求或响应命令
  * 
  * @author xiaomin.cxm
  * @version $Id: CommandFactory.java, v 0.1 Mar 10, 2016 11:24:24 AM yunliang.shi Exp $

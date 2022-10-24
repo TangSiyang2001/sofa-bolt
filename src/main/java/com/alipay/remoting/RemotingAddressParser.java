@@ -18,6 +18,7 @@ package com.alipay.remoting;
 
 /**
  * Remoting address parser
+ * TODO：地址解析器，详细见子类实现，从请求地址中获取相应的URL和参数
  *
  * Implement this to generate a {@link Url}
  *

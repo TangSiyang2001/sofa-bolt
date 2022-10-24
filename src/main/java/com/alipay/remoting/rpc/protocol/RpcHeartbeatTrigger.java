@@ -16,29 +16,21 @@
  */
 package com.alipay.remoting.rpc.protocol;
 
-import java.util.concurrent.TimeUnit;
-
-import org.slf4j.Logger;
-
-import com.alipay.remoting.CommandFactory;
-import com.alipay.remoting.Connection;
-import com.alipay.remoting.HeartbeatTrigger;
-import com.alipay.remoting.InvokeCallbackListener;
-import com.alipay.remoting.InvokeFuture;
-import com.alipay.remoting.ResponseStatus;
-import com.alipay.remoting.TimerHolder;
+import com.alipay.remoting.*;
 import com.alipay.remoting.config.ConfigManager;
 import com.alipay.remoting.log.BoltLoggerFactory;
 import com.alipay.remoting.rpc.DefaultInvokeFuture;
 import com.alipay.remoting.rpc.HeartbeatCommand;
 import com.alipay.remoting.rpc.ResponseCommand;
 import com.alipay.remoting.util.RemotingUtil;
-
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.util.Timeout;
 import io.netty.util.TimerTask;
+import org.slf4j.Logger;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * Handler for heart beat.
@@ -65,6 +57,7 @@ public class RpcHeartbeatTrigger implements HeartbeatTrigger {
      */
     @Override
     public void heartbeatTriggered(final ChannelHandlerContext ctx) throws Exception {
+        //TODO：对于心跳触发器的实现
         Integer heartbeatTimes = ctx.channel().attr(Connection.HEARTBEAT_COUNT).get();
         final Connection conn = ctx.channel().attr(Connection.CONNECTION).get();
         if (heartbeatTimes >= maxCount) {

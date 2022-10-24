@@ -16,38 +16,33 @@
  */
 package com.alipay.remoting.rpc;
 
-import java.util.concurrent.ConcurrentHashMap;
-
-import com.alipay.remoting.Connection;
-import com.alipay.remoting.InvokeContext;
-import com.alipay.remoting.Protocol;
-import com.alipay.remoting.ProtocolCode;
-import com.alipay.remoting.ProtocolManager;
-import com.alipay.remoting.RemotingContext;
+import com.alipay.remoting.*;
 import com.alipay.remoting.rpc.protocol.UserProcessor;
-
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
+import java.util.concurrent.ConcurrentMap;
+
 /**
  * Dispatch messages to corresponding protocol.
- * 
+ * 一个Dispatcher，集中处理请求
+ * TODO:复习@Sharable注解的使用
  * @author jiangping
  * @version $Id: RpcHandler.java, v 0.1 2015-12-14 PM4:01:37 tao Exp $
  */
 @ChannelHandler.Sharable
 public class RpcHandler extends ChannelInboundHandlerAdapter {
-    private boolean                                     serverSide;
+    private final boolean serverSide;
 
-    private ConcurrentHashMap<String, UserProcessor<?>> userProcessors;
+    private final ConcurrentMap<String, UserProcessor<?>> userProcessors;
 
-    public RpcHandler(ConcurrentHashMap<String, UserProcessor<?>> userProcessors) {
+    public RpcHandler(ConcurrentMap<String, UserProcessor<?>> userProcessors) {
         serverSide = false;
         this.userProcessors = userProcessors;
     }
 
-    public RpcHandler(boolean serverSide, ConcurrentHashMap<String, UserProcessor<?>> userProcessors) {
+    public RpcHandler(boolean serverSide, ConcurrentMap<String, UserProcessor<?>> userProcessors) {
         this.serverSide = serverSide;
         this.userProcessors = userProcessors;
     }
@@ -56,8 +51,9 @@ public class RpcHandler extends ChannelInboundHandlerAdapter {
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         ProtocolCode protocolCode = ctx.channel().attr(Connection.PROTOCOL).get();
         Protocol protocol = ProtocolManager.getProtocol(protocolCode);
+        //TODO:在这里创建的RemotingContext，包装了netty的ChannelHandlerContext和其他一众玩意儿交给commandHandler
         protocol.getCommandHandler().handleCommand(
-            new RemotingContext(ctx, new InvokeContext(), serverSide, userProcessors), msg);
+                new RemotingContext(ctx, new InvokeContext(), serverSide, userProcessors), msg);
         ctx.fireChannelRead(msg);
     }
 }

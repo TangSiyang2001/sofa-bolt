@@ -18,6 +18,7 @@ package com.alipay.remoting;
 
 /**
  * Listener to listen response and invoke callback.
+ * TODO:回调触发监听器，用于监听到响应后触发
  * 
  * @author jiangping
  * @version $Id: InvokeCallbackListener.java, v 0.1 2015-9-21 PM5:17:08 tao Exp $

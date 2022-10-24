@@ -55,7 +55,7 @@ public class ConnectionEventHandler extends ChannelDuplexHandler {
 
     private Reconnector             reconnectManager;
 
-    private Configuration           configuration;
+    private Configuration configuration;
 
     public ConnectionEventHandler() {
 

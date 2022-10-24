@@ -18,7 +18,8 @@ package com.alipay.remoting;
 
 /**
  * A protocol contains a group of commands.
- * 
+ * TODO:对于协议的抽象，包括编解码器，命令工厂，命令处理器，心跳触发器
+ *
  * @author jiangping
  * @version $Id: Protocol.java, v 0.1 2015-12-11 PM5:02:48 tao Exp $
  */

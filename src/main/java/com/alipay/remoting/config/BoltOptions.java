@@ -23,9 +23,9 @@ import java.util.concurrent.ConcurrentHashMap;
  *
  * @author chengyi (mark.lx@antfin.com) 2018-11-06 17:42
  */
-public class BoltOptions {
+public class BoltOptions implements Configuration {
 
-    private ConcurrentHashMap<BoltOption<?>, Object> options = new ConcurrentHashMap<BoltOption<?>, Object>();
+    private final ConcurrentHashMap<BoltOption<?>, Object> options = new ConcurrentHashMap<BoltOption<?>, Object>();
 
     /**
      * Get the optioned value.
@@ -34,6 +34,7 @@ public class BoltOptions {
      * @param option target option
      * @return the optioned value of default value if option does not exist.
      */
+    @Override
     @SuppressWarnings("unchecked")
     public <T> T option(BoltOption<T> option) {
         Object value = options.get(option);
@@ -52,6 +53,7 @@ public class BoltOptions {
      * @param value option value, null for remove a previous set {@link BoltOption}.
      * @return this BoltOptions instance
      */
+    @Override
     public <T> BoltOptions option(BoltOption<T> option, T value) {
         if (value == null) {
             options.remove(option);

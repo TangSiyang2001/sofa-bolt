@@ -47,7 +47,7 @@ public class FutureTaskUtil {
                 logger.error("Future task execute failed!", e);
             } catch (FutureTaskNotRunYetException e) {
                 logger.warn("Future task has not run yet!", e);
-            } catch (FutureTaskNotCompleted e) {
+            } catch (FutureTaskNotCompletedException e) {
                 logger.warn("Future task has not completed!", e);
             }
         }

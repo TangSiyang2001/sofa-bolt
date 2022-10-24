@@ -18,6 +18,7 @@ package com.alipay.remoting;
 
 /**
  * basic info for biz
+ * TODO:暴露给用户的业务上下文，默认实现是包装了RemotingContext，隐藏通信层细节
  * 
  * @author xiaomin.cxm
  * @version $Id: BizContext.java, v 0.1 Jan 6, 2016 10:35:04 PM xiaomin.cxm Exp $
